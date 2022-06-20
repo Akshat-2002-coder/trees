@@ -1,4 +1,4 @@
-// to see the top view of the bonary tree.
+// to see the bottom view of the bonary tree.
 #include<bits/stdc++.h>
 using namespace std;
 struct node
@@ -12,7 +12,7 @@ struct node* newnode(int val)
    temp->right=NULL;
    return temp;
 }
-vector<int> top_view(node* root){
+vector<int> bottom_view(node* root){
     map<int,int> mp;
     queue<pair<int,node*>> q;
     q.push({0,root});
@@ -21,8 +21,7 @@ vector<int> top_view(node* root){
         q.pop();
         int line=temp.first;
         node *val=temp.second;
-        if(mp.find(line)==mp.end())
-            mp[line]=val->data;
+        mp[line]=val->data;
         if(val->left) q.push({line-1,val->left});
         if(val->right) q.push({line+1,val->right});
     }
@@ -40,7 +39,7 @@ int main()
   root->left->right=newnode(50);
   root->right->left=newnode(60);
   root->right->right=newnode(70);
-  ans=top_view(root);
+  ans=bottom_view(root);
   for(auto it:ans)
      cout<<it<<" ";
   return 0;

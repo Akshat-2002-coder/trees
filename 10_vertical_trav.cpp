@@ -1,6 +1,5 @@
 //to do the vertical order traversal of a binary tree.
 // coordinate system concept is used.
-//To do the leval order traversal of a binary tree
 #include<bits/stdc++.h>
 using namespace std;
 struct node
