@@ -29,6 +29,9 @@ void markparents(node* root,unordered_map<node*,node*> &parent_track,node* targe
     }
 }
 vector<int> distancek(node* root,node* target, int k){
+    unordered_map<node*,node*> parent_track;
+    markparents(root,parent_track,target);
+
     unordered_map<node*,bool> visited;
     queue<node*> queue;
     queue.push(target);
@@ -48,6 +51,10 @@ vector<int> distancek(node* root,node* target, int k){
                 queue.push(current->right);
                 visited[current->right]=true;
             }
+            if(parent_track[current] && !visited[parent_track[current]]){
+                queue.push(parent_track[current]);
+                visited[parent_track[current]]=true;
+            }
         }
     }
     vector<int> res;
@@ -66,6 +73,8 @@ int main()
     root->left->right=newnode(50);
     root->right->left=newnode(60);
     root->right->right=newnode(70);
-    
+    vector<int> ans;
+    ans=distancek(root,root,2);
+    for(auto it:ans) cout<<it<<" ";
     return 0;
 } 

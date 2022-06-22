@@ -12,7 +12,7 @@ struct node* newnode(int key)
    temp->right=temp->left=NULL;
    return temp;
 }
-int finddistance(map<node*,node*> &mpp,struct node* start){
+int burn(map<node*,node*> &mpp,struct node* start){
     queue<node*> q;
     q.push(start);
     map<node*,int> vis;
@@ -34,7 +34,7 @@ int finddistance(map<node*,node*> &mpp,struct node* start){
                 vis[temp->right]=1;
                 q.push(temp->right);
             }
-            if(mpp[temp] && !vis[temp]){
+            if(mpp[temp] && !vis[mpp[temp]]){
                 fl=1;
                 vis[mpp[temp]]=1;
                 q.push(mpp[temp]);
@@ -66,7 +66,7 @@ struct node* bfstomarkparents(struct node* root,map<node*,node*> &mpp,int start)
 int fltakentoburntree(node* root,int start){
     map<node*,node*> mpp;
     struct node* target=bfstomarkparents(root,mpp,start);
-    int maxi=finddistance(mpp,target);
+    int maxi=burn(mpp,target);
     return maxi;
 }
 int main()

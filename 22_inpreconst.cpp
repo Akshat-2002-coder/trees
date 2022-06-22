@@ -26,6 +26,6 @@ struct node* constbinarytree(vector<int> &preorder,int prestart,int preend,
 }
 int main(){
     vector<int> preorder={3,9,15,20,7},inorder={9,3,15,20,7};
-    int prestart=0,preend=preorder.size()-1,instart=0,inend=inorder.size();
+    int prestart=0,preend=preorder.size()-1,instart=0,inend=inorder.size()-1;
     struct node* root=constbinarytree(preorder,prestart,preend,inorder,instart,inend);
 }
